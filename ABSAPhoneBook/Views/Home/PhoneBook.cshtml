@@ -1,0 +1,55 @@
+﻿@model ABSAPhoneBook.Models.PhoneBook
+
+@{
+    ViewData["Title"] = "Phone Book";
+}
+
+<h1>Phone Book</h1>
+<br />
+<br />
+<form asp-controller="Home" asp-action="PhoneBook">
+    <p>
+        Title: <input type="text" name="SearchString">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <dl class="row">
+                    <dt class="col-sm-4">
+                        @Html.DisplayNameFor(model => model.Name):
+                    </dt>
+                    <dd class="col-sm-8">
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                </dl>
+                <span>Entries:</span>
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (Entry item in Model.Entries)
+        {
+            <tr>
+                <td>
+                    <dl class="row">
+                        <dt class="col-sm-4">
+                            @item.Name
+                        </dt>
+                        <dd class="col-sm-8">
+                            @item.PhoneNumber
+                        </dd>
+                    </dl>
+
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
+<div>
+    <a asp-action="Create">Create New Entry</a>
+</div>
